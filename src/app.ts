@@ -1,13 +1,20 @@
-import express from 'express'
+import express, { Express } from 'express'
 import cors from 'cors'
+import { userRouter } from './routes'
+import { ErrorMiddleware } from './middlewares'
+import { connectDb } from './config'
 
-const app = express()
+export const app = express()
 app.use(cors())
+app.use(express.json())
 
-app.get('/', (req, res) => {
-    res.send('Olá Mundo!')
-})
+app
+    .use('/user', userRouter)
+    .use(ErrorMiddleware)
 
-app.listen(5000, () => {
-    console.log('Server running on port 5000')
-})
+export function init(): Promise<Express> {
+    connectDb()
+    return Promise.resolve(app)
+}
+
+export default app

@@ -1,13 +1,15 @@
-import express from 'express'
+import express, { Express } from 'express'
 import cors from 'cors'
 
-const app = express()
+export const app = express()
 app.use(cors())
 
 app.get('/', (req, res) => {
     res.send('Olá Mundo!')
 })
 
-app.listen(5000, () => {
-    console.log('Server running on port 5000')
-})
+export function init(): Promise<Express> {
+    return Promise.resolve(app)
+}
+
+export default app

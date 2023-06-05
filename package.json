@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsup src/server.ts --format esm",
     "start": "node dist/server.js",
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "migrate:run": "prisma migrate deploy"
   },
   "keywords": [],
   "author": "",

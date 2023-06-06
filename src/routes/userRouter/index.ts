@@ -1,7 +1,7 @@
 import { validateBody } from '@/middlewares'
 import { createUser } from '@/controllers'
-import { Router } from 'express'
 import { signUpSchema } from '@/schemas'
+import { Router } from 'express'
 
 export const userRouter = Router()
 

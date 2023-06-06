@@ -9,12 +9,12 @@ app.use(cors())
 app.use(express.json())
 
 app
-    .use('/user', userRouter)
-    .use(ErrorMiddleware)
+  .use('/user', userRouter)
+  .use(ErrorMiddleware)
 
 export function init(): Promise<Express> {
-    connectDb()
-    return Promise.resolve(app)
+  connectDb()
+  return Promise.resolve(app)
 }
 
 export default app

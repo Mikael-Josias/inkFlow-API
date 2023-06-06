@@ -1,21 +1,17 @@
-import { IUser } from '@/common/types'
 import { prisma } from '@/config'
 
-type CreateUserProps = Pick<IUser, 'name' | 'email' | 'profilePicture'> & {hashedPassword: string}
-type GetByEmailProps = Pick<IUser, 'email'>
-
-export async function createUser({ name, email, hashedPassword, profilePicture }: CreateUserProps): Promise<void> {
+export async function createUser(name: string, email: string, password: string, profilePicture: string): Promise<void> {
   await prisma.user.create({
     data: {
       name,
       email,
-      password: hashedPassword,
+      password,
       profilePicture,
     }
   })
 }
 
-export async function getByEmail({ email }: GetByEmailProps): Promise<IUser | null> {
+export async function getByEmail(email: string) {
   return prisma.user.findUnique({
     where: {
       email,

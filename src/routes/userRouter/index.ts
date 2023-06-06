@@ -5,4 +5,5 @@ import { Router } from 'express'
 
 export const userRouter = Router()
 
-userRouter.post('/', validateBody(signUpSchema), createUser)
+userRouter
+  .post('/', validateBody(signUpSchema), createUser)

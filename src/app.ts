@@ -1,6 +1,6 @@
 import express, { Express } from 'express'
 import cors from 'cors'
-import { userRouter } from './routes'
+import { sessionRouter, userRouter } from './routes'
 import { ErrorMiddleware } from './middlewares'
 import { connectDb } from './config'
 
@@ -10,6 +10,7 @@ app.use(express.json())
 
 app
   .use('/user', userRouter)
+  .use('/session', sessionRouter)
   .use(ErrorMiddleware)
 
 export function init(): Promise<Express> {

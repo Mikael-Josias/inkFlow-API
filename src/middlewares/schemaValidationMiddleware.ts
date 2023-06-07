@@ -15,6 +15,7 @@ function validate(schema: ZodSchema, type: 'body' | 'params') {
       schema.parse(req[type])
       next()
     } catch (error) {
+      console.log(error)
       res.status(400).send({message: 'Incorrect data!'})
     }
   }

@@ -13,6 +13,7 @@ export async function createNewUser(name: string, email: string, password: strin
   try {
     await createUser(name, email, hashedPassword, '')
   } catch (error) {
+    console.log(error)
     throw InternalError('Unexpected error!')
   }
 }

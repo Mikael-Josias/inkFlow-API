@@ -8,6 +8,7 @@ export async function createUser(req: Request, res: Response, next: NextFunction
     await createNewUser(name, email, password)
     res.sendStatus(201)
   } catch (error) {
+    console.log(error)
     next(error)
   }
 }

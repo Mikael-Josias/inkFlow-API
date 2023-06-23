@@ -7,3 +7,11 @@ export async function createSession(userId: string) {
     }
   })
 }
+
+export async function getSession(sessionId: string) {
+  return prisma.session.findUnique({
+    where: {
+      id: sessionId
+    }
+  })
+}

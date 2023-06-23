@@ -1,8 +1,7 @@
-import { createDocument } from '@/controllers'
-import { validateBody } from '@/middlewares'
-import { documentSchema } from '@/schemas'
+import { createDocument, getAllUserDocuments } from '@/controllers'
 import { Router } from 'express'
 
 export const documentRouter = Router()
 
-documentRouter.post('/', validateBody(documentSchema), createDocument)
+documentRouter.post('/', createDocument)
+documentRouter.get('/all', getAllUserDocuments)

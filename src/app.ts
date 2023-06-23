@@ -6,6 +6,7 @@ import { connectDb } from './config'
 import { createServer } from 'http'
 import express from 'express'
 import cors from 'cors'
+import { tokenValidationMiddleware } from './middlewares/tokenValidationMiddleware'
 
 const app = express()
 app.use(cors())
@@ -22,7 +23,7 @@ const io = new Server(httpServer, {
 app
   .use('/user', userRouter)
   .use('/session', sessionRouter)
-  .use('/document', documentRouter)
+  .use('/document', tokenValidationMiddleware, documentRouter)
   .use(ErrorMiddleware)
 
 io.on('connection', (socket: Socket) => {

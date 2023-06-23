@@ -1,5 +1,5 @@
 import { NotFoundError, InternalError } from '@/errors'
-import { createDocument, findDocumentById, getUserById } from '@/repositories'
+import { createDocument, findAllUserDocuments, findDocumentById, getUserById } from '@/repositories'
 import { updateDocument } from '@/repositories'
 
 type updateDocumentByIdProps = {
@@ -24,6 +24,11 @@ export async function getDocumentData(documentId: string) {
   const document = await findDocumentById(documentId)
   if(!document) throw NotFoundError('Document not found!')
   return document
+}
+
+export async function getAllDocumentsByUserId(userId: string) {
+  const documents = (await findAllUserDocuments(userId)).toArray()
+  return documents
 }
 
 export async function updateDocumentById({id, title, data}: updateDocumentByIdProps) {
